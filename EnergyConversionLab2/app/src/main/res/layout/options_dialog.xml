@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/options_sv">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/whenclicked_blue">
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layout_options_home"
+            android:background="@drawable/whenclicked_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/options_result_ll_one"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/options_result_b_new"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="New Report"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/options_result_ll_two"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/options_result_ll_one"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/options_result_b_add"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Add to existing report"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/options_result_ll_three"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/options_result_ll_two"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/options_result_b_delete"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Delete Report"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/options_result_ll_five"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/options_result_ll_three"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/options_result_b_share"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Share Report"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/options_result_ll_four"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/options_result_ll_five"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/options_result_b_back"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layout_options_new">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/layout_options_ll_new"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_new_tv"
+                    android:gravity="center"
+                    android:text="Name the report"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    android:background="@null"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/layout_options_ll_new_two"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_options_ll_new"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_new_et"
+                    android:gravity="center"
+                    android:digits="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ_"
+                    android:hint="Enter name here"
+                    android:textSize="15sp"
+                    android:background="@null"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/layout_options_ll_new_three"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_options_ll_new_two"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_new_b"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Create"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/layout_options_ll_new_four"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_options_ll_new_three"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_new_b_back"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layout_options_existing">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:id="@+id/layout_options_existing_list"
+                android:divider="@android:color/black"
+                android:background="@drawable/button_blue"
+                android:dividerHeight="2.0sp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/layout_options_existing_list_ll"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:background="#7093a0"
+                android:layout_below="@+id/layout_options_existing_list"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_existing_list_b_back"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layout_options_delete">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:id="@+id/layout_options_delete_list"
+                android:divider="@android:color/black"
+                android:dividerHeight="2.0sp"
+                android:background="@drawable/button_blue"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/layout_options_delete_list_ll"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="#7093a0"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/layout_options_delete_list"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_delete_list_b_back"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layout_options_share">
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:id="@+id/layout_options_share_list"
+                android:divider="@android:color/black"
+                android:dividerHeight="2.0sp"
+                android:background="@drawable/button_blue"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/layout_options_share_list_ll"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="#7093a0"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/layout_options_share_list"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/layout_options_share_list_b_back"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"
+                    android:background="@drawable/button_blue"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+</ScrollView>

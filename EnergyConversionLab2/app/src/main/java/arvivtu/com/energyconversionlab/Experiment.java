@@ -19,12 +19,13 @@ import android.widget.Toast;
 import fragment.Boys;
 import fragment.Junkers;
 import fragment.Redwood;
+import fragment.Saybolt;
 
 
 public class Experiment extends AppCompatActivity implements View.OnClickListener {
 
     private FrameLayout experiment_container;
-    private int pos;
+    public int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +34,8 @@ public class Experiment extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_experiment);
 
         //---------------------------------------------------------------------------------------------------
+        // Setting up custom actionbar
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
@@ -87,24 +90,16 @@ public class Experiment extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_experiment, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         return super.onOptionsItemSelected(item);
     }
 
@@ -112,12 +107,11 @@ public class Experiment extends AppCompatActivity implements View.OnClickListene
     public void onBackPressed()
     {
         super.onBackPressed();
-        finish();
     }
 
     //-------------------------------------------------------------------------------------------------------
 
-    private void experimentPicker(int position)
+    public void experimentPicker(int position)
     {
         switch(position)
         {
@@ -139,6 +133,21 @@ public class Experiment extends AppCompatActivity implements View.OnClickListene
                         replace(R.id.experiment_container, fragment3);
                 fragmentTransaction3.commit();
                 break;
+            case 3:
+                Fragment fragment4 = new Saybolt();
+                FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction().
+                        replace(R.id.experiment_container, fragment4);
+                fragmentTransaction4.commit();
+                break;
+            /*
+            case 4:
+                Fragment fragment5 = new PTwoStroke();
+                FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction().
+                        replace(R.id.experiment_container, fragment5);
+                fragmentTransaction5.commit();
+                break;
+                */
+
         }
     }
 

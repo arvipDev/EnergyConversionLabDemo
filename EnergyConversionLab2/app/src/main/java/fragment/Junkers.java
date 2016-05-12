@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import arvivtu.com.energyconversionlab.R;
+import service.IOption;
+import service.ReportOptionsSvcImpl;
 
 public class Junkers extends Fragment implements View.OnClickListener {
 
@@ -116,11 +118,21 @@ public class Junkers extends Fragment implements View.OnClickListener {
                         !junker_tl_table_row2_c_two.getText().toString().isEmpty() &&
                         !junker_tl_table_row2_c_three.getText().toString().isEmpty() )
                 {
-                    Float one = Float.parseFloat(junker_tl_table_row2_c_one.getText().toString());
-                    Float two = Float.parseFloat(junker_tl_table_row2_c_two.getText().toString());
-                    Float three = Float.parseFloat(junker_tl_table_row2_c_three.getText().toString());
-                    result = calculation(one, two, three);
-                    createResultDialog();
+                    if(Float.valueOf(junker_tl_table_row2_c_one.getText().toString()) != 0f &&
+                            Float.valueOf(junker_tl_table_row2_c_two.getText().toString()) != 0f &&
+                            Float.valueOf(junker_tl_table_row2_c_three.getText().toString()) != 0f)
+                    {
+                        Float one = Float.parseFloat(junker_tl_table_row2_c_one.getText().toString());
+                        Float two = Float.parseFloat(junker_tl_table_row2_c_two.getText().toString());
+                        Float three = Float.parseFloat(junker_tl_table_row2_c_three.getText().toString());
+                        result = calculation(one, two, three);
+                        createResultDialog();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Invalid entry, you entered 0 as one of the values" ,
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
                 else
                 {
@@ -144,10 +156,20 @@ public class Junkers extends Fragment implements View.OnClickListener {
     {
         if(one != 0.0f && two != 0.0f && three != 0.0f)
         {
-            Float temp1 = (waterDensity * waterCollected_volume * speceficHeat_water * (three - two)) / (one * gasDensity);
-            return temp1;
+            return (waterDensity * waterCollected_volume * speceficHeat_water * (calculateDeltaT(three, two))) /
+                    (calculateGasMass (one, gasDensity));
         }
         return null;
+    }
+
+    public Float calculateDeltaT(Float t2, Float t1)
+    {
+        return (t2 - t1);
+    }
+
+    public Float calculateGasMass(Float one, Float gasDensity)
+    {
+        return (one * gasDensity);
     }
 
     public void createDialog()
@@ -240,12 +262,28 @@ public class Junkers extends Fragment implements View.OnClickListener {
         junkers_result_b.setOnClickListener
                 (new View.OnClickListener() {
                     @Override
-                    public void onClick(View v)
-                    {
+                    public void onClick(View v) {
                         alertDialog.cancel();
                     }
                 });
 
+        Button junkers_result_b_options = (Button)dialogView.findViewById(R.id.junkers_result_b_options);
+        junkers_result_b_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle  bundle = new Bundle();
+                bundle.putString("one", junker_tl_table_row2_c_one.getText().toString());
+                bundle.putString("two", junker_tl_table_row2_c_two.getText().toString());
+                bundle.putString("three", junker_tl_table_row2_c_three.getText().toString());
+                bundle.putString("four", junkers_result_tv.getText().toString());
+
+                IOption reportOptions = new ReportOptionsSvcImpl(getActivity());
+                reportOptions.setBundle(bundle);
+                reportOptions.createOptionsDialog();
+            }
+        });
+
         alertDialog.show();
     }
+
 }

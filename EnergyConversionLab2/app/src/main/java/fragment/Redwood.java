@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import arvivtu.com.energyconversionlab.R;
-import graph.Graph;
 
 public class Redwood extends Fragment implements View.OnClickListener {
 
@@ -47,14 +46,7 @@ public class Redwood extends Fragment implements View.OnClickListener {
     private int T3 = 85;
     private int T4 = 2000;
 
-    private Button redwood_b_editgiven;
-
-    private TextView redwood_tv_given_one;
-
-    public Redwood()
-    {
-        // Required empty public constructor
-    }
+    private TextView redwood_tv_given_one, redwood_tv_formula_text, redwood_tv_abbreviations_text ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -64,20 +56,20 @@ public class Redwood extends Fragment implements View.OnClickListener {
 
         //--------------------------------------------------------------------------------------------------------------
         //populating text in textview.
-        TextView redwood_tv_abbreviations_text = (TextView) rootView.findViewById(R.id.redwood_tv_abbreviations_text);
+        redwood_tv_abbreviations_text = (TextView) rootView.findViewById(R.id.redwood_tv_abbreviations_text);
         redwood_tv_abbreviations_text.setText(Html.fromHtml("&gamma; = Kinematic viscosity in m<sup><small>2</small></sup>/s<br>" +
                 "&mu; = Dynamic(Absolute) viscosity in Ns/m<sup><small>2</small></sup><br>" +
                 "&rho; = Density of given oil in Kg/m<sup><small>3</small></sup><br>" +
                 "W<sub><small>1</small></sub> = Weight of measuring jar in grams<br>" +
-                "W<sub><small>2</small></sub> = Weight of measuring jar in grams<br>" +
+                "W<sub><small>2</small></sub> = Weight of measuring jar and the fluid in grams<br>" +
                 "t = Time for collecting 50 ml of oil in sec<br>" +
                 "A and B are instrument constants<br>" +
                 "T = temperature in <sup><small><small>o</small></small></sup>C<br>"));
 
-        TextView redwood_tv_formula_text = (TextView) rootView.findViewById(R.id.redwood_tv_formula_text);
-        redwood_tv_formula_text.setText(Html.fromHtml("&gamma; = At - (B &divide; t))*10<sup><small>-6</small></sup> (" +
+        redwood_tv_formula_text = (TextView) rootView.findViewById(R.id.redwood_tv_formula_text);
+        redwood_tv_formula_text.setText(Html.fromHtml("&gamma; = (At - (B &divide; t))*10<sup><small>-6</small></sup> (" +
                 "m<sup><small>2</small></sup>/s)<br>" +
-                "&rho; = ((W<sub><small>2</small></sub> - W<sub><small>1</small></sub>)&divide; 50)*" +
+                "&rho; = ((W<sub><small>2</small></sub> - W<sub><small>1</small></sub>)&divide; 50 ml )*" +
                 "10<sup><small>3</small></sup> (Kg/m<sup><small>3</small></sup>)<br>" +
                 "&mu; = &gamma; * &rho; in Ns/m<sup><small>2</small></sup>"));
 
@@ -132,7 +124,7 @@ public class Redwood extends Fragment implements View.OnClickListener {
         trial6_c4 = (EditText)rootView.findViewById(R.id.reedwood_tl_table_row6_c_four);
         trial6_c5 = (EditText)rootView.findViewById(R.id.reedwood_tl_table_row6_c_five);
 
-        redwood_b_editgiven = (Button)rootView.findViewById(R.id.redwood_b_editgiven);
+        Button redwood_b_editgiven = (Button) rootView.findViewById(R.id.redwood_b_editgiven);
         redwood_b_editgiven.setOnClickListener(this);
 
         //----------------------------------------------------------------------------------------------------------------------
@@ -171,20 +163,55 @@ public class Redwood extends Fragment implements View.OnClickListener {
                         break;
                     }
                 }
+
                 if(!error)
                 {
                     calculateResults();
                     if(dynamicViscosityList.size() == 0)
                         Toast.makeText(getActivity(), "Empty table, tabulate readings to generate result",
                                 Toast.LENGTH_LONG).show();
-                    else createResultDialog();
+                    else
+                    {
+
+                        ArrayList<String> kinString = new ArrayList<>();
+                        ArrayList<String> dynString = new ArrayList<>();
+                        ArrayList<String> oilString = new ArrayList<>();
+                        ArrayList<String> temString = new ArrayList<>();
+                        //------------------------------------------------------
+                        ArrayList<String> timeString = new ArrayList<>();
+                        ArrayList<String> flask_weightString = new ArrayList<>();
+                        ArrayList<String> flask_oil_weightString = new ArrayList<>();
+
+                        for(int i = 0; i < kinematicViscosityList.size(); i++)
+                        {
+
+                            kinString.add(kinematicViscosityList.get(i).toString());
+                            dynString.add(dynamicViscosityList.get(i).toString());
+                            oilString.add(oilDensity.get(i).toString());
+                            temString.add(temperature.get(i).toString());
+                            //------------------------------------------------------
+                            timeString.add(time.get(i).toString());
+                            flask_weightString.add(flask_oil_weight.get(i).toString());
+                            flask_oil_weightString.add(flask_oil_weight.get(i).toString());
+
+                        }
+
+                        Intent redwoodResult = new Intent("android.intent.action.REDWOODRESULT");
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArrayList("kinematicViscosityList", kinString);
+                        bundle.putStringArrayList("dynamicViscosityList", dynString);
+                        bundle.putStringArrayList("oilDensity", oilString);
+                        bundle.putStringArrayList("temperature", temString);
+                        //----------------------------------------------------------
+                        bundle.putStringArrayList("time", timeString);
+                        bundle.putStringArrayList("flask_oil_weight", flask_weightString);
+                        bundle.putStringArrayList("flask_oil_weight", flask_oil_weightString);
+
+                        redwoodResult.putExtras(bundle);
+                        startActivity(redwoodResult);
+
+                    }
                 }
-
-                if(dynamicViscosityList.size() > 1)setGraphParams();
-                else Toast.makeText(getActivity(), "Can not create graph with a single reading",
-                        Toast.LENGTH_LONG).show();
-
-                break;
         }
     }
 
@@ -218,16 +245,6 @@ public class Redwood extends Fragment implements View.OnClickListener {
 
     }
 
-    public void setGraphParams()
-    {
-        Graph graph = new Graph();
-        graph.setDynamicViscosity(dynamicViscosityList);
-        graph.setKinamaticViscosity(kinematicViscosityList);
-        graph.setTemperature(temperature);
-        Intent intent = graph.getIntent(getActivity());
-        startActivity(intent);
-    }
-
     public void calculateResults()
     {
         for(int i = 0; i < temperature.size(); i++)
@@ -255,7 +272,7 @@ public class Redwood extends Fragment implements View.OnClickListener {
 
     public Float calculatekinematicViscosity(Float time, Float A, Float B)
     {
-        return ((A*time) - (B/time));
+        return ((A*time) - (B/time)) ;
     }
 
     public Float calculateDensity(Float w1, Float w2)
@@ -267,7 +284,22 @@ public class Redwood extends Fragment implements View.OnClickListener {
     {
         redwood_tv_given_one.setText(Html.fromHtml("A<sub><small>1</small></sub> = " + A1 + ", B<sub><small>1</small></sub> = " + B1 + " if t = " + T1 + " - " + T2 + " sec<br>" +
                 "A<sub><small>2</small></sub>= " + A2 + ", B<sub><small>2</small></sub> = " + B2 + " if t = " + T3 + " - " + T4 + " sec<br>" +
-                "Amout of oil collected = " + ml + " ml"));
+                "Amount of oil collected = " + ml + " ml"));
+
+        redwood_tv_formula_text.setText(Html.fromHtml("&gamma; = At - (B &divide; t))*10<sup><small>-6</small></sup> (" +
+                "m<sup><small>2</small></sup>/s)<br>" +
+                "&rho; = ((W<sub><small>2</small></sub> - W<sub><small>1</small></sub>)&divide; " + ml + " )*" +
+                "10<sup><small>3</small></sup> (Kg/m<sup><small>3</small></sup>)<br>" +
+                "&mu; = &gamma; * &rho; in Ns/m<sup><small>2</small></sup>"));
+
+        redwood_tv_abbreviations_text.setText(Html.fromHtml("&gamma; = Kinematic viscosity in m<sup><small>2</small></sup>/s<br>" +
+                "&mu; = Dynamic(Absolute) viscosity in Ns/m<sup><small>2</small></sup><br>" +
+                "&rho; = Density of given oil in Kg/m<sup><small>3</small></sup><br>" +
+                "W<sub><small>1</small></sub> = Weight of measuring jar in grams<br>" +
+                "W<sub><small>2</small></sub> = Weight of measuring jar and the fluid in grams<br>" +
+                "t = Time for collecting " + ml + " ml of oil in sec<br>" +
+                "A and B are instrument constants<br>" +
+                "T = temperature in <sup><small><small>o</small></small></sup>C<br>"));
     }
 
     public void createDialog()
@@ -325,115 +357,34 @@ public class Redwood extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(View v)
                     {
-                        if(!redwood_dialog_et_one.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_one.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_one.getText().
+                                toString()) != 0f )
                             A1 = Float.valueOf(redwood_dialog_et_one.getText().toString());
-                        if(!redwood_dialog_et_two.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_two.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_two.getText().
+                                toString()) != 0f )
                             B2 = Float.valueOf(redwood_dialog_et_two.getText().toString());
-                        if(!redwood_dialog_et_two2.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_two2.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_two2.getText().
+                                toString()) != 0f )
                             T1 = Integer.valueOf(redwood_dialog_et_two2.getText().toString());
-                        if(!redwood_dialog_et_two3.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_two3.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_two3.getText().
+                                toString()) != 0f)
                             T2 = Integer.valueOf(redwood_dialog_et_two3.getText().toString());
-                        if(!redwood_dialog_et_three.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_three.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_three.getText().
+                                toString()) != 0f)
                             A2 = Float.valueOf(redwood_dialog_et_three.getText().toString());
-                        if(!redwood_dialog_et_four.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_four.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_four.getText().
+                                toString()) != 0f )
                             B2 = Float.valueOf(redwood_dialog_et_four.getText().toString());
-                        if(!redwood_dialog_et_four5.getText().toString().isEmpty() )
-                            T3 = Integer.valueOf(redwood_dialog_et_four6.getText().toString());
-                        if(!redwood_dialog_et_four6.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_four5.getText().toString().isEmpty()&& Float.valueOf(redwood_dialog_et_four5.getText().
+                                toString()) != 0f )
+                            T3 = Integer.valueOf(redwood_dialog_et_four5.getText().toString());
+                        if(!redwood_dialog_et_four6.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_four6.getText().
+                                toString()) != 0f)
                             T4 = Integer.valueOf(redwood_dialog_et_four6.getText().toString());
-                        if(!redwood_dialog_et_edittext.getText().toString().isEmpty() )
+                        if(!redwood_dialog_et_edittext.getText().toString().isEmpty() && Float.valueOf(redwood_dialog_et_edittext.getText().
+                                toString()) != 0f )
                             ml = Float.valueOf(redwood_dialog_et_edittext.getText().toString());
                         populateGiven();
-                        alertDialog.cancel();
-                    }
-                });
-
-        // show it
-        alertDialog.show();
-    }
-
-    public void createResultDialog()
-    {
-        LayoutInflater li = LayoutInflater.from(getActivity());
-        View dialogView = li.inflate(R.layout.redwood_resultdialog, null);
-
-        TextView redwood_d_r1_tv1 = (TextView)dialogView.findViewById(R.id.redwood_d_r1_tv1);
-        redwood_d_r1_tv1.setText(Html.fromHtml("Trial<br>No"));
-
-        TextView redwood_d_r1_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r1_tv2);
-        redwood_d_r1_tv2.setText(Html.fromHtml("&gamma;<br>m<sup><small>2</small></sup>/s"));
-
-        TextView redwood_d_r1_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r1_tv3);
-        redwood_d_r1_tv3.setText(Html.fromHtml("&rho;<br>Kg/m<sup><small>3</small></sup>"));
-
-        TextView redwood_d_r1_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r1_tv4);
-        redwood_d_r1_tv4.setText(Html.fromHtml("&mu;<br>Ns/m<sup><small>2</small></sup>"));
-
-        //----------------------------------------------------------------------------------------------------------------------
-
-        TextView redwood_d_r2_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r2_tv2);
-        TextView redwood_d_r2_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r2_tv3);
-        TextView redwood_d_r2_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r2_tv4);
-        TextView redwood_d_r3_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r3_tv2);
-        TextView redwood_d_r3_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r3_tv3);
-        TextView redwood_d_r3_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r3_tv4);
-        TextView redwood_d_r4_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r4_tv2);
-        TextView redwood_d_r4_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r4_tv3);
-        TextView redwood_d_r4_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r4_tv4);
-        TextView redwood_d_r5_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r5_tv2);
-        TextView redwood_d_r5_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r5_tv3);
-        TextView redwood_d_r5_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r5_tv4);
-        TextView redwood_d_r6_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r6_tv2);
-        TextView redwood_d_r6_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r6_tv3);
-        TextView redwood_d_r6_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r6_tv4);
-        TextView redwood_d_r7_tv2 = (TextView)dialogView.findViewById(R.id.redwood_d_r7_tv2);
-        TextView redwood_d_r7_tv3 = (TextView)dialogView.findViewById(R.id.redwood_d_r7_tv3);
-        TextView redwood_d_r7_tv4 = (TextView)dialogView.findViewById(R.id.redwood_d_r7_tv4);
-
-        if(dynamicViscosityList.size() < 6)
-        {
-            for(int i = dynamicViscosityList.size(); i < 6; i++)
-            {
-                dynamicViscosityList.add(0f);
-                kinematicViscosityList.add(0f);
-                oilDensity.add(0f);
-            }
-        }
-
-        redwood_d_r2_tv2.setText(""+kinematicViscosityList.get(0));
-        redwood_d_r2_tv3.setText(""+oilDensity.get(0));
-        redwood_d_r2_tv4.setText(""+dynamicViscosityList.get(0));
-        redwood_d_r3_tv2.setText(""+kinematicViscosityList.get(1));
-        redwood_d_r3_tv3.setText(""+oilDensity.get(1));
-        redwood_d_r3_tv4.setText(""+dynamicViscosityList.get(1));
-        redwood_d_r4_tv2.setText(""+kinematicViscosityList.get(2));
-        redwood_d_r4_tv3.setText(""+oilDensity.get(2));
-        redwood_d_r4_tv4.setText(""+dynamicViscosityList.get(2));
-        redwood_d_r5_tv2.setText(""+kinematicViscosityList.get(3));
-        redwood_d_r5_tv3.setText(""+oilDensity.get(3));
-        redwood_d_r5_tv4.setText(""+dynamicViscosityList.get(3));
-        redwood_d_r6_tv2.setText(""+kinematicViscosityList.get(4));
-        redwood_d_r6_tv3.setText(""+oilDensity.get(4));
-        redwood_d_r6_tv4.setText(""+dynamicViscosityList.get(4));
-        redwood_d_r7_tv2.setText(""+kinematicViscosityList.get(5));
-        redwood_d_r7_tv3.setText(""+oilDensity.get(5));
-        redwood_d_r7_tv4.setText(""+dynamicViscosityList.get(5));
-
-        //-----------------------------------------------------------------------------------------------------------------
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                getActivity());
-
-        alertDialogBuilder.setView(dialogView);
-
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-
-        Button redwood_d_b_results = (Button) dialogView.findViewById(R.id.redwood_d_b_results);
-        redwood_d_b_results.setOnClickListener
-                (new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
                         alertDialog.cancel();
                     }
                 });

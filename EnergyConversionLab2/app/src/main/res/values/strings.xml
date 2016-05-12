@@ -22,4 +22,13 @@
     <string name="redwood_title">Redwood Viscometer</string>
     <string name="redwood_aim">To determine the viscosity of diesel at different temperatures</string>
     <string name="formulae">FORMULAE:</string>
+    <string name="title_activity_redwood_result">RedwoodResult</string>
+    <string name="pts_tv_title_text">Performance test - two stroke, single cylinder petrol engine</string>
+    <string name="pts_aim_text">To conduct peerformance test on 2 stroke, 1 cylinder petrol engine and to draw the heat balance sheet</string>
+    <string name="edit_constants">Edit Constants</string>
+    <string name="trial_1">1</string>
+    <string name="trial_2">2</string>
+    <string name="trial_3">3</string>
+    <string name="trial_4">4</string>
+    <string name="trial_5">5</string>
 </resources>

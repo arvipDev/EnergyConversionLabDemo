@@ -2,11 +2,11 @@ package graph;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 
 import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -44,20 +44,17 @@ public class Graph
         for(int i = 0; i < kinamaticViscosity.size(); i++) Log.d("kinamaticViscosity",""+ kinamaticViscosity.get(i));
     }
 
-    public Intent getIntent(Context context)
+    public GraphicalView getKinamaticViscosityGraph(Context context)
     {
         TimeSeries series = new TimeSeries("Kinamatic Viscosity Curve");
-        TimeSeries seriesTwo = new TimeSeries("Dynamic Viscosity Curve");
         display();
         for(int i = 0; i < temperature.size(); i++)
         {
             series.add(temperature.get(i), kinamaticViscosity.get(i));
-            seriesTwo.add(temperature.get(i), dynamicViscosity.get(i));
         }
 
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         dataset.addSeries(series);
-        //dataset.addSeries(seriesTwo);
 
         Log.d("dataset", "" + dataset.getSeriesCount());
 
@@ -67,7 +64,50 @@ public class Graph
         renderer.setLineWidth(2);
         renderer.setColor(Color.WHITE);
         renderer.setPointStyle(PointStyle.CIRCLE);
-        renderer.setFillPoints(true);
+        renderer.setFillPoints(false);
+
+        seriesRenderer.addSeriesRenderer(renderer);
+
+        Log.d("renderer", "" + renderer.getPointStyle());
+        seriesRenderer.setXTitle("Temperature");
+        seriesRenderer.setAxisTitleTextSize(25);
+        seriesRenderer.setYTitle("Viscosity");
+        seriesRenderer.setApplyBackgroundColor(true);
+        seriesRenderer.setBackgroundColor(Color.BLACK);
+        seriesRenderer.setLabelsTextSize(25);
+        seriesRenderer.setZoomButtonsVisible(true);
+        seriesRenderer.setLabelsColor(Color.GREEN);
+        seriesRenderer.setShowGrid(true);
+        seriesRenderer.setGridColor(Color.BLUE);
+        seriesRenderer.setXLabelsPadding(5);
+        seriesRenderer.setChartTitle("Viscosity VS Temperature");
+        seriesRenderer.setChartTitleTextSize(25);
+        seriesRenderer.setPointSize(10);
+
+        return ChartFactory.getLineChartView(context, dataset, seriesRenderer);
+    }
+
+    public GraphicalView getDynamicViscosityGraph(Context context)
+    {
+        TimeSeries series = new TimeSeries("Dynamic Viscosity Curve");
+        display();
+        for(int i = 0; i < temperature.size(); i++)
+        {
+            series.add(temperature.get(i), dynamicViscosity.get(i));
+        }
+
+        XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+        dataset.addSeries(series);
+
+        Log.d("dataset", "" + dataset.getSeriesCount());
+
+        XYMultipleSeriesRenderer seriesRenderer = new XYMultipleSeriesRenderer();
+        XYSeriesRenderer renderer = new XYSeriesRenderer();
+        renderer.setChartValuesTextSize(10);
+        renderer.setLineWidth(2);
+        renderer.setColor(Color.YELLOW);
+        renderer.setPointStyle(PointStyle.CIRCLE);
+        renderer.setFillPoints(false);
 
         seriesRenderer.addSeriesRenderer(renderer);
 
@@ -80,10 +120,14 @@ public class Graph
         seriesRenderer.setLabelsTextSize(25);
         seriesRenderer.setLabelsColor(Color.GREEN);
         seriesRenderer.setShowGrid(true);
+        seriesRenderer.setZoomButtonsVisible(true);
         seriesRenderer.setGridColor(Color.BLUE);
+        seriesRenderer.setXLabelsPadding(5);
+        seriesRenderer.setChartTitle("Viscosity VS Temperature");
+        seriesRenderer.setChartTitleTextSize(25);
+        seriesRenderer.setPointSize(10);
 
-        Intent intent = ChartFactory.getLineChartIntent(context, dataset, seriesRenderer, "Redwood Viscometer");
-
-        return intent;
+        return ChartFactory.getLineChartView(context, dataset, seriesRenderer);
     }
+
 }

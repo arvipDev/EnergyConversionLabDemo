@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class ExperimentsList extends AppCompatActivity {
     private ListView experiments_lv;
     private List<ECLab> experiments = new ArrayList<>();
     private ExperimentsCustomList adapter;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -75,6 +77,7 @@ public class ExperimentsList extends AppCompatActivity {
         experiments_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                progressBar.setVisibility(View.VISIBLE);
                 Intent experimentsActivity = new Intent("android.intent.action.EXPERIMENT");
                 Bundle extras = new Bundle();
                 extras.putInt("position", position);
@@ -82,6 +85,9 @@ public class ExperimentsList extends AppCompatActivity {
                 startActivity(experimentsActivity);
             }
         });
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         //-------------------------------------------------
     }
@@ -94,22 +100,20 @@ public class ExperimentsList extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onResume() {
+        super.onResume();
+        progressBar.setVisibility(View.GONE);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         return super.onOptionsItemSelected(item);
     }
 
     //--------------------------------------------------------------------------------------------------------
-    public List<ECLab> populateExp() {
+    public List<ECLab> populateExp()
+    {
 
         ECLab exp1 = new ECLab();
         Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.junkers);
@@ -126,10 +130,24 @@ public class ExperimentsList extends AppCompatActivity {
         exp3.setImage(Bitmap.createBitmap(bmp3));
         exp3.setDescription("Redwood Viscometer");
 
+        ECLab exp4 = new ECLab();
+        Bitmap bmp4 = BitmapFactory.decodeResource(getResources(), R.drawable.saybolt);
+        exp4.setImage(Bitmap.createBitmap(bmp4));
+        exp4.setDescription("Saybolt Viscometer");
+
+        /*
+        ECLab exp5 = new ECLab();
+        Bitmap bmp5 = BitmapFactory.decodeResource(getResources(), R.drawable.twostroke);
+        exp5.setImage(Bitmap.createBitmap(bmp5));
+        exp5.setDescription("Performance test of 2 stroke, single cylinder petrol engine");
+        */
+
         try {
             experiments.add(exp1);
             experiments.add(exp2);
             experiments.add(exp3);
+            experiments.add(exp4);
+            //experiments.add(exp5);
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("Cant add", "Dint add");

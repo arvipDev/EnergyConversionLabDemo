@@ -12,4 +12,15 @@
         android:dividerHeight="2.0sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/progressBar"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false" />
+
 </RelativeLayout>
