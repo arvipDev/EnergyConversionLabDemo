@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/whenclicked_blue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/redwood_dialog_ll_one"
+        android:weightSum="4"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_one"
+            android:gravity="center"
+            android:layout_marginRight="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:hint="A1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="left"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_two"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="B1"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_two2"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="t1"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_two3"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="t2"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/redwood_dialog_ll_two"
+        android:weightSum="4"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/redwood_dialog_ll_one"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_three"
+            android:gravity="center"
+            android:layout_marginRight="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="A2"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="left"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_four"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="B2"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_four5"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="t1"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_four6"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="t2"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/redwood_dialog_ll_three"
+        android:weightSum="5"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/redwood_dialog_ll_two"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_tv_text"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textSize="15sp"
+            android:text="Amount of oil collected"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_et_edittext"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textColorHint="#dadada"
+            android:textSize="15sp"
+            android:hint="50 ml"
+            android:layout_weight="4"
+            android:inputType="numberDecimal"
+            android:layout_gravity="right"
+            android:background="@drawable/whenclicked_blue"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/redwood_dialog_ll_four"
+        android:weightSum="2"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/redwood_dialog_ll_three"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_b_back"
+            android:gravity="center"
+            android:layout_marginRight="2.5dp"
+            android:textSize="15sp"
+            android:text="Back"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:background="@drawable/button_blue"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/redwood_dialog_b_save"
+            android:gravity="center"
+            android:layout_marginLeft="2.5dp"
+            android:textSize="15sp"
+            android:text="Save"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:background="@drawable/button_blue"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

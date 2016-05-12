@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Energy Conversion Lab</string>
+
+    <string name="exp">experiment image</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_experiment">Experiment</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="junkers_title">Junkers Gas Calorimeter</string>
+    <string name="junkers_aim">AIM:</string>
+    <string name="junkers_aim_text">To determine the calorific value of gaseous fuel</string>
+    <string name="junkers_formula">FORMULA:</string>
+    <string name="junkers_tv_given">GIVEN:</string>
+    <string name="boys_title">Boys Gas Calorimeter</string>
+    <string name="boys_abbreviation">ABBREVIATIONS:</string>
+    <string name="table">TABULATE READINGS</string>
+    <string name="results">Generate Result</string>
+    <string name="close">Close</string>
+    <string name="redwood_title">Redwood Viscometer</string>
+    <string name="redwood_aim">To determine the viscosity of diesel at different temperatures</string>
+    <string name="formulae">FORMULAE:</string>
+</resources>

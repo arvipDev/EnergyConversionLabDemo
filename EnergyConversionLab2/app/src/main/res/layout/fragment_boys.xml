@@ -1,0 +1,446 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/boys_sv">
+
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/whenclicked_blue"
+        tools:context="fragments.Boys"
+        android:id="@+id/boys_rl"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:id="@+id/boys_tv_title"
+            android:text="@string/boys_title"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/boys_ll_one"
+            android:orientation="horizontal"
+            android:layout_below="@+id/boys_tv_title"
+            android:background="#7093a0"
+            android:weightSum="6"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_aim"
+                android:layout_weight="5.2"
+                android:paddingLeft="5dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@string/junkers_aim"
+                android:textColor="@android:color/white"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_aim_text"
+                android:layout_weight="0.8"
+                android:textSize="15sp"
+                android:text="@string/junkers_aim_text"
+                android:textColor="@android:color/white"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="215dp"
+            android:id="@+id/boys_ll_two"
+            android:orientation="vertical"
+            android:layout_below="@+id/boys_ll_one"
+            android:background="#678b98"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/boys_tv_abbreviations"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@string/boys_abbreviation"
+                android:textColor="@android:color/white"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_abbreviations_text"
+                android:textSize="15sp"
+                android:paddingLeft="5dp"
+                android:textColor="@android:color/white"
+                android:gravity="center|left"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:id="@+id/boys_ll_three"
+            android:orientation="horizontal"
+            android:layout_below="@+id/boys_ll_two"
+            android:background="#5f8592"
+            android:weightSum="6"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_formula"
+                android:layout_weight="4.5"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:paddingLeft="5dp"
+                android:text="@string/junkers_formula"
+                android:textColor="@android:color/white"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_formula_text"
+                android:layout_weight="1.5"
+                android:textSize="15sp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/white"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/boys_ll_four"
+            android:orientation="horizontal"
+            android:layout_below="@+id/boys_ll_three"
+            android:background="#567b88"
+            android:weightSum="6"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_given"
+                android:layout_weight="4.5"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:text="@string/junkers_tv_given"
+                android:textColor="@android:color/white"
+                android:gravity="center|left"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/boys_tv_given_one"
+                android:layout_weight="1.5"
+                android:textSize="15sp"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/white"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:id="@+id/boys_table"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="@string/table"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:layout_below="@+id/boys_ll_four"
+            android:background="#4d6a77"/>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="93dp"
+            android:id="@+id/boys_tl_table"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/white"
+            android:layout_below="@+id/boys_table">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:id="@+id/boys_tl_table_row"
+                android:layout_weight="6"
+                android:background="#567b89"
+                android:layout_marginTop="1dp">
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_one"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:layout_marginRight="2.5dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_two"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_three"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_four"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_five"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/boys_tl_table_row_c_six"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:layout_marginRight="2.5dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="fill_parent"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:id="@+id/boys_tl_table_row_two"
+                android:layout_weight="6"
+                android:layout_below="@+id/boys_tl_table_row"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#5f8694">
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/boys_tl_table_row2_c_one"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:textSize="15sp"
+                    android:layout_marginRight="2.5dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:background="@null"/>
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/boys_tl_table_row2_c_two"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@null"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/boys_tl_table_row2_c_three"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@null"
+                    android:textColor="@android:color/white"
+                    android:inputType="numberDecimal" />
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/boys_tl_table_row2_c_four"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:textSize="15sp"
+                    android:layout_marginRight="2.5dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:background="@null"/>
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/boys_tl_table_row2_c_five"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@null"
+                    android:textColor="@android:color/white" />
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/boys_tl_table_row2_c_six"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="2.5dp"
+                    android:background="@null"
+                    android:textColor="@android:color/white"
+                    android:inputType="numberDecimal" />
+
+                <View
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:layout_width="2dp"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:id="@+id/boys_b_results"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/results"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/boys_tl_table"
+            android:background="@drawable/button_blue"/>
+
+    </RelativeLayout>
+
+</ScrollView>
